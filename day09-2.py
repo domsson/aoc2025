@@ -141,8 +141,6 @@ def find_largest_fucker_fast_top(anchor, verts_left, verts_right):
             break
         limiting_vert_right = v
 
-    print(f"limiting vert right: {limiting_vert_right}")
-
     verts_left.sort(key=lambda x: x[1])
     best_candidate_left = (0, 0)
     largest_area = 0
@@ -158,8 +156,6 @@ def find_largest_fucker_fast_top(anchor, verts_left, verts_right):
             largest_area = v_area
             best_candidate_left = v
 
-    print(f"best candidate left: {best_candidate_left}")
-    print(f"area: {largest_area}")
     return largest_area
 
 def find_largest_fucker_fast_bottom(anchor, verts_left, verts_right):
@@ -179,8 +175,6 @@ def find_largest_fucker_fast_bottom(anchor, verts_left, verts_right):
             break
         limiting_vert_right = v
 
-    print(f"limiting vert right: {limiting_vert_right}")
-
     verts_left.sort(key=lambda x: x[1], reverse=True)
     best_candidate_left = (0, 0)
     largest_area = 0
@@ -196,8 +190,6 @@ def find_largest_fucker_fast_bottom(anchor, verts_left, verts_right):
             largest_area = v_area
             best_candidate_left = v
 
-    print(f"best candidate left: {best_candidate_left}")
-    print(f"area: {largest_area}")
     return largest_area
 
 biggest_area_top    = find_largest_fucker_fast_top(cutoff_verts[1],    relevant_verts_top_left,    relevant_verts_top_right)
