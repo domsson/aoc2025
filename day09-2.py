@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# day 4 - part 1
+# day 9 - part 2
 #
 
 import os
