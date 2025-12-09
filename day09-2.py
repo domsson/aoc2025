@@ -108,42 +108,6 @@ print(f"relevant verts top left:     {len(relevant_verts_top_left)}")
 print(f"relevant verts bottom left:  {len(relevant_verts_bottom_left)}")
 print(f"relevant verts bottom right: {len(relevant_verts_bottom_right)}")
 
-
-def find_largest_area_h(anchor, verts_left, verts_right): # this assumes anchor vert is on right-hand side
-    biggest_area = [0, (0,0)]
-
-    for v_left in verts_left:
-        rect_viable = True
-        top    = max(v_left[1], anchor[1])
-        bottom = min(v_left[1], anchor[1])
-        left   = v_left[0]
-        right  = anchor[0]
-
-        for v in verts_left:
-            if v[1] > top:
-                continue
-            if v[1] < bottom:
-                continue
-            if v[0] > left:
-                rect_viable = False
-                continue
-        for v in verts_right:
-            if v[1] > top:
-                continue
-            if v[1] < bottom:
-                continue
-            if v[0] < right:
-                rect_viable = False
-                continue
-
-        if rect_viable:
-            a = area(v_left, anchor)
-            t = tuple((v_left, anchor))
-            if a > biggest_area[0]:
-                biggest_area = [a, t]
-    
-    return biggest_area
-
 def someone_below_blocks_left(candidate, others):
     for o in others:
         if o[1] >= candidate[1]:
@@ -196,6 +160,7 @@ def find_largest_fucker_fast_top(anchor, verts_left, verts_right):
 
     print(f"best candidate left: {best_candidate_left}")
     print(f"area: {largest_area}")
+    return largest_area
 
 def find_largest_fucker_fast_bottom(anchor, verts_left, verts_right):
     x = anchor[0]
@@ -233,11 +198,7 @@ def find_largest_fucker_fast_bottom(anchor, verts_left, verts_right):
 
     print(f"best candidate left: {best_candidate_left}")
     print(f"area: {largest_area}")
-
-
-
-#biggest_area_top    = find_largest_area_h(cutoff_verts[1], relevant_verts_top_left, relevant_verts_top_right)
-#biggest_area_bottom = find_largest_area_h(cutoff_verts[2], relevant_verts_bottom_left, relevant_verts_bottom_right)
+    return largest_area
 
 biggest_area_top    = find_largest_fucker_fast_top(cutoff_verts[1],    relevant_verts_top_left,    relevant_verts_top_right)
 biggest_area_bottom = find_largest_fucker_fast_bottom(cutoff_verts[2], relevant_verts_bottom_left, relevant_verts_bottom_right)
@@ -245,8 +206,8 @@ biggest_area_bottom = find_largest_fucker_fast_bottom(cutoff_verts[2], relevant_
 print(f"largest area top: {biggest_area_top}")
 print(f"largest area bottom: {biggest_area_bottom}")
 
-#largest = max(biggest_area_top, biggest_area_bottom)
-#print(f"largest area overall: {largest}")
+largest = max(biggest_area_top, biggest_area_bottom)
+print(f"largest area overall: {largest}")
 
 
 '''
